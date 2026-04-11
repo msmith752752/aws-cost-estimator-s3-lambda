@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AWS Cost Estimator</title>
+</head>
+<body>
+
+  <h2>AWS EC2 Cost Estimator</h2>
+
+  <input id="hours" type="number" placeholder="Enter EC2 hours" />
+
+  <button onclick="calculate()">Estimate Cost</button>
+
+  <p id="result"></p>
+
+  <script>
+    async function calculate() {
+      const hours = document.getElementById("hours").value;
+
+      const response = await fetch("https://bbw74dj4ok.execute-api.us-east-1.amazonaws.com/estimate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          ec2_hours: Number(hours)
+        })
+      });
+
+      const data = await response.json();
+
+      document.getElementById("result").innerText =
+        "Estimated Cost: $" + data.estimated_cost;
+    }
+  </script>
+
+</body>
+</html>
