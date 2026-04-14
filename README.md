@@ -9,7 +9,7 @@ http://matthew-aws-cost-estimator-2026-april.s3-website-us-east-1.amazonaws.com/
 
 ---
 
-## 📌 What This Project Does
+## What This Project Does
 
 Users enter estimated EC2 usage hours and receive a real-time cost calculation powered by an AWS backend.
 
@@ -17,7 +17,7 @@ This simulates how cloud pricing tools work in production environments.
 
 ---
 
-## 🧱 Architecture
+## Architecture
 
 Frontend (HTML/JS)
 → Amazon S3 (Static Hosting)
@@ -27,7 +27,7 @@ Frontend (HTML/JS)
 
 ---
 
-## ⚙️ Tech Stack
+## Tech Stack
 
 - AWS Lambda
 - API Gateway
@@ -37,7 +37,7 @@ Frontend (HTML/JS)
 
 ---
 
-## 💡 Key Learning Outcomes
+##  Key Learning Outcomes
 
 - Built and deployed a serverless backend
 - Connected frontend to AWS APIs
@@ -46,7 +46,7 @@ Frontend (HTML/JS)
 
 ---
 
-## 🚀 Future Improvements
+## Future Improvements
 
 - Add multiple AWS services (S3, RDS, DynamoDB estimates)
 - Add region-based pricing
@@ -55,6 +55,18 @@ Frontend (HTML/JS)
 
 ---
 
-## 📷 Screenshot
+## Screenshot
 
-(Add screenshot here later for portfolio polish)
+<img width="1588" height="524" alt="image" src="https://github.com/user-attachments/assets/1668d96a-4e94-4432-a75a-1f4b3e255854" />
+
+
+Monitoring & Logging
+Integrated with Amazon CloudWatch for centralized logging
+Logs incoming API requests, query parameters, and execution flow
+Enables debugging and traceability of budget calculations
+2. Add a “What I improved” section (very strong)
+
+🚀 Recent Improvements
+Added structured logging in AWS Lambda
+Tracked request lifecycle (input → processing → output)
+Improved observability for debugging API behavior
