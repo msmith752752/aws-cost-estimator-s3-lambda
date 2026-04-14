@@ -4,7 +4,7 @@ A simple serverless web application that estimates AWS EC2 costs in real time.
 
 ---
 
-## 🌐 Live Demo
+## Live Demo
 http://matthew-aws-cost-estimator-2026-april.s3-website-us-east-1.amazonaws.com/
 
 ---
@@ -66,7 +66,7 @@ Logs incoming API requests, query parameters, and execution flow
 Enables debugging and traceability of budget calculations
 2. Add a “What I improved” section (very strong)
 
-🚀 Recent Improvements
+Recent Improvements
 Added structured logging in AWS Lambda
 Tracked request lifecycle (input → processing → output)
 Improved observability for debugging API behavior
