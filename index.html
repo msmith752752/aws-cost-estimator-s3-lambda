@@ -14,23 +14,71 @@
   <p id="result"></p>
 
   <script>
+    // ✅ Validation function
+    function validateHours(hours) {
+      if (hours === "" || hours === null || hours === undefined) {
+        return "Please enter EC2 usage hours.";
+      }
+
+      if (isNaN(hours)) {
+        return "Hours must be a valid number.";
+      }
+
+      if (Number(hours) < 0) {
+        return "Hours cannot be negative.";
+      }
+
+      return null;
+    }
+
+    // ✅ Main function
     async function calculate() {
-      const hours = document.getElementById("hours").value;
+      const hoursInput = document.getElementById("hours").value;
 
-      const response = await fetch("https://bbw74dj4ok.execute-api.us-east-1.amazonaws.com/estimate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          ec2_hours: Number(hours)
-        })
-      });
+      // Validate before calling API
+      const error = validateHours(hoursInput);
+      if (error) {
+        document.getElementById("result").innerText = error;
+        document.getElementById("result").style.color = "red";
+        return;
+      }
 
-      const data = await response.json();
+      const hours = Number(hoursInput);
 
-      document.getElementById("result").innerText =
-        "Estimated Cost: $" + data.estimated_cost;
+      // Optional UX improvement
+      document.getElementById("result").style.color = "black";
+      document.getElementById("result").innerText = "Calculating...";
+
+      try {
+        const response = await fetch("https://bbw74dj4ok.execute-api.us-east-1.amazonaws.com/estimate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            ec2_hours: hours
+          })
+        });
+
+        const data = await response.json();
+
+        // Handle API-side errors safely
+        if (!data || data.estimated_cost === undefined) {
+          document.getElementById("result").innerText =
+            "Error: Invalid response from server.";
+          document.getElementById("result").style.color = "red";
+          return;
+        }
+
+        document.getElementById("result").style.color = "black";
+        document.getElementById("result").innerText =
+          "Estimated Cost: $" + Number(data.estimated_cost).toFixed(2);
+
+      } catch (err) {
+        document.getElementById("result").innerText =
+          "Error contacting server. Please try again.";
+        document.getElementById("result").style.color = "red";
+      }
     }
   </script>
 
